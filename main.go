@@ -11,7 +11,6 @@ import (
 // main is the entry point of the program.
 func main() { //nolint:typecheck
 	structures.Setup()
-	fmt.Println(structures.Exchanges)
 
 	var wg sync.WaitGroup
 	results := make(chan structures.DexResponse, len(structures.Exchanges))
@@ -38,7 +37,6 @@ func main() { //nolint:typecheck
 }
 
 func compareDexes(allResults []structures.DexResponse) {
-	fmt.Println("allResults:", allResults, "\n")
 	tokenMap := make(map[string][]structures.SiteTokenData)
 
 	// Aggregate all tokens by their symbols
@@ -51,7 +49,7 @@ func compareDexes(allResults []structures.DexResponse) {
 		}
 	}
 
-	fmt.Println(tokenMap)
+	//fmt.Println(tokenMap)
 	// Now compare all tokens within each symbol group
 	for symbol, tokens := range tokenMap {
 		fmt.Printf("Comparisons for symbol: %s\n", symbol)
@@ -84,5 +82,5 @@ func compare(a, b int) int {
 }
 
 func trade(to structures.SiteTokenData, from structures.SiteTokenData) {
-	fmt.Println("To", to, "From", from)
+	fmt.Println(to, "--->", from)
 }
